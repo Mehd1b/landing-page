@@ -50,17 +50,10 @@ export default function HeroSection() {
             <div className="absolute -bottom-4 -right-4 w-16 h-16 border border-purple-400/20 rounded-full animate-spin-reverse"></div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center opacity-0 animate-fade-in-up" style={{animationDelay: '1s', animationFillMode: 'forwards'}}>
-            <button className="group relative bg-white text-black px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-gray-100 overflow-hidden">
-              <span className="relative z-10">Deploy Agent</span>
-              <div className="absolute inset-0 bg-linear-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-cyan-400 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-            </button>
-            
-            <button className="group relative border border-gray-600 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:border-gray-400 overflow-hidden">
-              <span className="relative z-10">Browse Marketplace</span>
-              <div className="absolute inset-0 bg-linear-to-r from-purple-500 to-emerald-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-purple-500 to-emerald-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          <div className="flex justify-center items-center opacity-0 animate-fade-in-up" style={{animationDelay: '1s', animationFillMode: 'forwards'}}>
+            <button className="group relative bg-linear-to-r from-gray-700 to-gray-800 text-gray-400 px-8 py-4 rounded-full font-medium transition-all duration-300 cursor-not-allowed">
+              <span className="relative z-10">Coming Soon</span>
+              <div className="absolute inset-0 bg-linear-to-r from-cyan-400/10 via-purple-500/10 to-emerald-400/10 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
             </button>
           </div>
         </div>

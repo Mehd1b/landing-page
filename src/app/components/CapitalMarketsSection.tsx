@@ -13,21 +13,21 @@ const marketFeatures: MarketFeature[] = [
   {
     title: "Agent Tokenization",
     description: "Transform AI agents into tradeable assets with fractional ownership and transparent performance metrics.",
-    value: "ERC-20",
+    value: "Coming Soon",
     color: "#00d4ff",
     gradient: "from-cyan-400 to-blue-600"
   },
   {
     title: "Yield Generation",
     description: "Earn passive income from agent performance with automated profit distribution to token holders.",
-    value: "15-45%",
+    value: "Coming Soon",
     color: "#a855f7",
     gradient: "from-purple-400 to-violet-600"
   },
   {
     title: "Liquidity Pools",
     description: "Deep liquidity markets for agent tokens enable seamless entry and exit for investors.",
-    value: "$2.5M",
+    value: "Coming Soon",
     color: "#10b981",
     gradient: "from-emerald-400 to-teal-600"
   }

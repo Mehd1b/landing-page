@@ -31,7 +31,7 @@ export default function AnimatedBackground() {
     };
 
     const createParticles = () => {
-      const particleCount = Math.min(100, Math.floor((canvas.width * canvas.height) / 15000));
+      const particleCount = Math.min(200, Math.floor((canvas.width * canvas.height) / 8000));
       particles = [];
       
       for (let i = 0; i < particleCount; i++) {
@@ -40,27 +40,27 @@ export default function AnimatedBackground() {
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.5 + 0.2,
+          size: Math.random() * 3 + 2,
+          opacity: Math.random() * 0.8 + 0.4,
         });
       }
     };
 
     const drawParticle = (particle: Particle) => {
-      ctx.globalAlpha = particle.opacity;
-      ctx.fillStyle = '#3b82f6';
+      ctx.globalAlpha = particle.opacity * 0.6;
+      ctx.fillStyle = '#60a5fa';
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
       ctx.fill();
     };
 
     const drawConnection = (p1: Particle, p2: Particle, distance: number) => {
-      const maxDistance = 120;
-      const opacity = (1 - distance / maxDistance) * 0.3;
+      const maxDistance = 140;
+      const opacity = (1 - distance / maxDistance) * 0.25;
       
       ctx.globalAlpha = opacity;
-      ctx.strokeStyle = '#3b82f6';
-      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = '#60a5fa';
+      ctx.lineWidth = 0.8;
       ctx.beginPath();
       ctx.moveTo(p1.x, p1.y);
       ctx.lineTo(p2.x, p2.y);
@@ -107,7 +107,7 @@ export default function AnimatedBackground() {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
+          if (distance < 140) {
             drawConnection(particles[i], particles[j], distance);
           }
         }

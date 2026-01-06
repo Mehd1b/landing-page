@@ -1,19 +1,21 @@
 'use client';
 import AnimatedBackground from '../components/AnimatedBackground';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function WhitepaperPage() {
   return (
     <div className="min-h-screen bg-black text-white relative">
       <AnimatedBackground />
       
-      <nav className="relative z-10 flex items-center justify-between px-8 py-6 border-b border-gray-800/50">
-        <a href="/" className="text-xl font-semibold hover:text-cyan-400 transition-colors">
-          ← DEFIESTA
-        </a>
-        <div className="text-sm text-gray-400">
-          Whitepaper v1.0
+      <div className="border-b border-gray-800/50">
+        <Header />
+        <div className="relative z-10 flex justify-end items-center px-8 pb-4">
+          <div className="text-sm text-gray-400">
+            Whitepaper v1.0
+          </div>
         </div>
-      </nav>
+      </div>
 
       <main className="relative z-10 max-w-4xl mx-auto px-8 py-12">
         <article className="prose prose-invert prose-lg max-w-none">
@@ -78,72 +80,61 @@ export default function WhitepaperPage() {
             <p className="text-gray-300 leading-8">
               At the protocol level, the architecture includes an agent registry, user vault contracts, a zero-knowledge proof system, verifier contracts, and a metrics engine that maintains verifiable reputation data. Each component has a narrowly defined responsibility in order to minimize complexity and attack surface.
             </p>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">3. Agent Lifecycle</h2>
+            <br>
+            </br>
+            <h3 className="text-2xl font-semibold text-white mb-6">2.1 Agent Lifecycle</h3>
             <p className="text-gray-300 leading-8 mb-6">
               The lifecycle of an agent begins with registration. An agent developer compiles the agent into a deterministic execution format, such as WASM, and computes cryptographic commitments to the agent code, the model parameters, and the declared execution constraints. These commitments are published on-chain and become immutable identifiers for the agent.
             </p>
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-300 leading-8 mb-6">
               Once registered, agents become discoverable through the marketplace interface. Users can evaluate agents based on strategy descriptions, declared risk constraints, and performance metrics that are derived from verifiable execution history. Because all metrics are backed by cryptographic proofs, users do not need to rely on self-reported claims.
             </p>
-          </section>
 
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">4. User Vaults</h2>
-            <p className="text-gray-300 leading-8">
+            <h3 className="text-2xl font-semibold text-white mb-6">2.2 User Vaults</h3>
+            <p className="text-gray-300 leading-8 mb-6">
               Users interact with agents exclusively through dedicated vault smart contracts. Each vault holds the user's assets and enforces strict execution policies. The vault only accepts actions that are accompanied by valid zero-knowledge proofs and that comply with the agent's declared constraints. At no point does an agent or executor gain direct custody of user funds, which significantly reduces the risk of misuse or theft.
             </p>
-          </section>
 
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">5. Execution Workflow</h2>
+            <h3 className="text-2xl font-semibold text-white mb-6">2.3 Execution Workflow</h3>
             <p className="text-gray-300 leading-8 mb-6">
               Execution proceeds in discrete epochs. During each epoch, an executor collects canonical inputs, including the current vault state and external data such as oracle prices. The agent is then executed off-chain in a deterministic environment using the committed code and model. Following execution, the executor generates a zero-knowledge proof attesting that the execution was correct and that all constraints were respected.
             </p>
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-300 leading-8 mb-6">
               The proof, along with a description of the resulting actions, is submitted on-chain. The smart contracts verify the proof and, if it is valid, execute the authorized actions atomically. If the proof is invalid, the transaction is rejected and no state changes occur.
             </p>
-          </section>
 
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">6. Zero-Knowledge Proof System</h2>
-            <p className="text-gray-300 leading-8">
+            <h3 className="text-2xl font-semibold text-white mb-6">2.4 Zero-Knowledge Proof System</h3>
+            <p className="text-gray-300 leading-8 mb-6">
               The proof system is structured as a composition of several logical circuits. One circuit proves correct agent execution with respect to the committed code and model. Another circuit enforces the declared safety and risk constraints. A third circuit verifies the correctness of state transitions and accounting within the vault. A final circuit computes performance metrics and reputation scores. These circuits are recursively aggregated into a single proof that can be verified efficiently on-chain.
             </p>
-          </section>
 
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">7. Constraint Model</h2>
-            <p className="text-gray-300 leading-8">
+            <h3 className="text-2xl font-semibold text-white mb-6">2.5 Constraint Model</h3>
+            <p className="text-gray-300 leading-8 mb-6">
               Constraints are declared by the agent developer at registration time and enforced cryptographically during execution. These constraints may include limits on drawdown, restrictions on asset transfers, bounds on position sizes, and prohibitions on certain external calls. Any execution that violates these constraints results in an invalid proof and is therefore rejected by the protocol.
             </p>
-          </section>
 
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">8. Accounting and State Roots</h2>
-            <p className="text-gray-300 leading-8">
-              Vault state is represented by a Merkle-based state root that commits to balances, open positions, and accrued fees. Each execution produces a new state root, and the proof system guarantees that the transition from the previous state root to the new one is correct. This approach allows the protocol to maintain a compact on-chain representation of complex off-chain state.
-            </p>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">9. Performance and Reputation</h2>
+            <h3 className="text-2xl font-semibold text-white mb-6">2.6 Performance and Reputation</h3>
             <p className="text-gray-300 leading-8">
               Performance metrics such as return on investment, volatility, and maximum drawdown are computed within zero-knowledge circuits. Because these metrics are derived from provably correct state transitions, they cannot be forged or manipulated. The resulting reputation scores provide users with a reliable basis for comparing agents.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">10. Incentive Model</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">3. Accounting and State Roots</h2>
+            <p className="text-gray-300 leading-8">
+              Vault state is represented by a Merkle-based state root that commits to balances, open positions, and accrued fees. Each execution produces a new state root, and the proof system guarantees that the transition from the previous state root to the new one is correct. This approach allows the protocol to maintain a compact on-chain representation of complex off-chain state.
+            </p>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">4. Incentive Model</h2>
             <p className="text-gray-300 leading-8">
               The protocol includes a native incentive structure that aligns the interests of all participants. Users pay execution and performance fees in exchange for verifiable agent behavior. Developers receive royalties proportional to the usage and success of their agents. Executors are compensated for running agents and generating proofs. All fee distribution logic is enforced on-chain and is fully transparent.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">11. Tokenomics</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">5. Tokenomics</h2>
             <p className="text-gray-300 leading-8 mb-6">
               The protocol is governed and coordinated by a native utility token that serves as the economic backbone of the system. This token is designed to align long-term incentives between users, agent developers, executors, and governance participants, while avoiding reliance on speculative mechanics. The token plays an active role in protocol security, coordination, and value distribution rather than serving solely as a medium of exchange.
             </p>
@@ -168,47 +159,38 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">12. Security Considerations</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">6. Security Considerations</h2>
             <p className="text-gray-300 leading-8">
               The protocol is designed to mitigate a wide range of attack vectors, including malicious agent code, executor deviation, and state manipulation. Security relies on well-understood cryptographic assumptions underlying hash functions and zero-knowledge proof systems. By minimizing trusted components, the protocol reduces the impact of potential failures.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">13. Scalability Considerations</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">7. Scalability Considerations</h2>
             <p className="text-gray-300 leading-8">
               Scalability is achieved through off-chain execution and recursive proof aggregation. On-chain verification remains lightweight, making the protocol suitable for deployment on layer two networks and rollups. As proof systems improve, the protocol can benefit from reduced costs without fundamental redesign.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">14. Future Work</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">8. Future Work</h2>
             <p className="text-gray-300 leading-8">
               Future extensions of the protocol include governance frameworks for agent standards, composition of multiple agents, on-chain governance over agent upgrades, and integration with hardware-based attestations. These directions aim to further expand the applicability of verifiable AI agents.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">15. Conclusion</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">9. Conclusion</h2>
             <div className="bg-gray-900/60 rounded-2xl p-8 border border-gray-700/50">
               <p className="text-gray-300 leading-8">
                 This protocol introduces a foundational layer for trustless AI agents in decentralized systems. By combining zero-knowledge proofs, constrained execution, and on-chain enforcement, it enables a new class of autonomous agents whose behavior is verifiable, accountable, and economically aligned with user interests.
               </p>
             </div>
           </section>
-
-          <footer className="text-center py-8 border-t border-gray-800/50 mt-16">
-            <div className="text-gray-400 text-sm mb-4">
-              DeFiesta Protocol Whitepaper v1.0 • January 2026
-            </div>
-            <div className="flex justify-center space-x-6 text-sm">
-              <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">Download PDF</a>
-              <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">Technical Appendix</a>
-              <a href="#" className="text-emerald-400 hover:text-emerald-300 transition-colors">GitHub Repository</a>
-            </div>
-          </footer>
         </article>
       </main>
+      
+      <Footer />
     </div>
   );
 }
