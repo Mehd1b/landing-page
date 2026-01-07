@@ -157,11 +157,6 @@ export default function FuturisticFeatures() {
                   <p className="text-gray-400 text-center leading-relaxed flex-1 group-hover:text-gray-300 transition-colors duration-300">
                     {feature.description}
                   </p>
-
-                  {/* Hover indicator */}
-                  <div className="mt-6 flex justify-center">
-                    <div className={`w-2 h-2 rounded-full bg-linear-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                  </div>
                 </div>
 
                 {/* Data stream effect */}

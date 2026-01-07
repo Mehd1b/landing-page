@@ -157,9 +157,6 @@ export default function PillarsSection() {
                     </p>
                   </div>
 
-                  <div className="mt-6 flex justify-center">
-                    <div className={`w-2 h-2 rounded-full bg-linear-to-r ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                  </div>
                 </div>
 
                 <div className="absolute right-6 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-30 transition-opacity duration-500">

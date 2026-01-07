@@ -10,7 +10,7 @@ interface Particle {
   opacity: number;
 }
 
-export default function AnimatedBackground() {
+export default function AnimatedBackground({ hidden = false }: { hidden?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function AnimatedBackground() {
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 3 + 2,
+          size: Math.random() * 1.5 + 1,
           opacity: Math.random() * 0.8 + 0.4,
         });
       }
@@ -143,7 +143,7 @@ export default function AnimatedBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-300 ${hidden ? 'opacity-0' : 'opacity-100'}`}
       style={{ background: 'transparent' }}
     />
   );

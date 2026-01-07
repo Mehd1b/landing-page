@@ -45,9 +45,6 @@ export default function HeroSection() {
               Deploy AI agents that execute DeFi strategies with zero-knowledge proofs. 
               Trustless, verifiable, and autonomous financial execution on-chain.
             </p>
-            
-            <div className="absolute -top-4 -left-4 w-24 h-24 border border-cyan-400/20 rounded-full animate-spin-slow"></div>
-            <div className="absolute -bottom-4 -right-4 w-16 h-16 border border-purple-400/20 rounded-full animate-spin-reverse"></div>
           </div>
 
           <div className="flex justify-center items-center opacity-0 animate-fade-in-up" style={{animationDelay: '1s', animationFillMode: 'forwards'}}>
