@@ -95,12 +95,81 @@ export default function WhitepaperPage() {
               Users interact with agents exclusively through dedicated vault smart contracts. Each vault holds the user's assets and enforces strict execution policies. The vault only accepts actions that are accompanied by valid zero-knowledge proofs and that comply with the agent's declared constraints. At no point does an agent or executor gain direct custody of user funds, which significantly reduces the risk of misuse or theft.
             </p>
 
-            <h3 className="text-2xl font-semibold text-white mb-6">2.3 Execution Workflow</h3>
+            <h3 className="text-2xl font-semibold text-white mb-6">2.3 Execution Environment & Determinism</h3>
             <p className="text-gray-300 leading-8 mb-6">
-              Execution proceeds in discrete epochs. During each epoch, an executor collects canonical inputs, including the current vault state and external data such as oracle prices. The agent is then executed off-chain in a deterministic environment using the committed code and model. Following execution, the executor generates a zero-knowledge proof attesting that the execution was correct and that all constraints were respected.
+              The protocol employs a zero-knowledge virtual machine (zkVM) to ensure that AI agent execution is fully deterministic and verifiable. After a detailed evaluation of available zkVM platforms, RISC Zero was selected due to its native support for floating-point operations, efficient proving pipeline, mature Ethereum integration, and formally verified RISC-V execution environment. This choice eliminates the need for quantization and complex scaling while allowing Rust-based agent code to run natively.
             </p>
+
+            <div className="bg-gray-900/60 rounded-2xl p-8 border border-gray-700/50 mb-8 font-mono text-sm">
+              <h5 className="text-lg font-semibold text-white mb-4 font-sans">Execution Layer Overview</h5>
+              <pre className="text-gray-300 whitespace-pre overflow-x-auto">
+{`┌─────────────────────────────────────────────────────────────────────┐
+│                             Execution Layer                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────┐    ┌──────────────────┐    ┌──────────────────┐    │
+│  │ Agent Code  │───▶│   RISC Zero      │───▶│  STARK Proof     │    │
+│  │ (Rust/WASM) │    │   zkVM (R0VM)    │    │                  │    │
+│  └─────────────┘    └──────────────────┘    └────────┬─────────┘    │
+│                                                       │             │
+│  ┌─────────────┐    ┌──────────────────┐    ┌────────▼─────────┐    │
+│  │ ML Model    │───▶│  Deterministic   │    │  STARK-to-SNARK  │    │
+│  │ Parameters  │    │  Inference       │    │  Wrapper         │    │
+│  └─────────────┘    └──────────────────┘    └────────┬─────────┘    │
+│                                                       │             │
+│                                              ┌────────▼─────────┐   │
+│                                              │  Groth16 Proof   │   │
+│                                              │  (~200 bytes)    │   │
+│                                              └────────┬─────────┘   │
+│                                                       │             │
+└───────────────────────────────────────────────────────┼─────────────┘
+                                                        │
+                                                        ▼
+                                         ┌──────────────────────────┐
+                                         │  On-Chain Verification   │
+                                         │  (~250k gas)             │
+                                         └──────────────────────────┘`}
+              </pre>
+            </div>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.1 Deterministic AI Model Execution</h4>
             <p className="text-gray-300 leading-8 mb-6">
-              The proof, along with a description of the resulting actions, is submitted on-chain. The smart contracts verify the proof and, if it is valid, execute the authorized actions atomically. If the proof is invalid, the transaction is rejected and no state changes occur.
+              To guarantee deterministic execution, AI inference is executed with fixed instruction ordering, single-threaded execution, and deterministic random number seeds if applicable. Floating-point rounding and parallelization non-determinism are eliminated by leveraging the RISC Zero environment's deterministic floating-point support. All model inputs are supplied by the host environment and committed to the zkVM, and all outputs are written to a cryptographically verifiable journal.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.2 Model Commitment Scheme</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              Every agent is associated with an immutable cryptographic commitment to both the code and the model parameters, called the Image ID. The Image ID is derived as a hash of the compiled RISC-V binary, memory layout, and entry point, ensuring that any change produces a new identifier. Large model parameters are committed via a Merkle tree structure, where the root hash is stored on-chain. This allows the zkVM to verify that executed models correspond exactly to the committed parameters without revealing sensitive weights.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.3 Execution Architecture</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              The execution environment follows a guest-host model. The guest program runs inside the zkVM, producing a cryptographic proof of correct execution, writing outputs to a journal, and operating independently of the host. The host program orchestrates inputs, collects proofs, and submits verified outputs to on-chain contracts. This architecture enforces strict separation between computation and orchestration, preventing the host from influencing execution while enabling proofs to be generated efficiently.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.4 Proof Pipeline</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              Agent execution traces are processed in segments, generating STARK proofs for each segment. These proofs are recursively aggregated and then compressed into a Groth16 SNARK to allow on-chain verification with low gas costs. The protocol employs Poseidon2 for circuit-friendly hashing, and the recursion allows multiple execution segments or epochs to be represented by a single proof. Proving cost is optimized via GPU acceleration and the Bonsai proving network, providing a scalable, decentralized proving infrastructure.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.5 On-Chain Verification and Integration</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              On-chain verifier contracts store agent Image IDs and enforce execution correctness. Upon receiving a proof, the verifier confirms that the proof corresponds to the committed model and that all declared constraints are respected. Verified outputs are then executed, updating state securely and atomically. Gas cost for verification is estimated around 250k per proof on L2 networks, allowing efficient, cost-effective integration into Ethereum and compatible rollups.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.6 Executor Infrastructure and Security</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              Executors participate in a decentralized network and must stake tokens to submit proofs. Slashing mechanisms penalize invalid proofs, aligning incentives with honest computation. The execution environment and proof system rely on well-established cryptographic assumptions including discrete log hardness for Groth16, the Fiat-Shamir transform for STARK soundness, and collision resistance for Poseidon2. Formal verification of RISC Zero circuits ensures correctness of instruction execution, memory safety, and cryptographic operations.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.7 Supported AI Models</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              The execution environment supports a variety of models, including linear and logistic regression, random forests, XGBoost, k-nearest neighbors, and neural networks, all implemented in Rust or compatible libraries. This flexibility allows DeFiesta to handle a wide range of agent strategies, from risk scoring to complex MLP-based decision-making, while maintaining verifiable, deterministic execution.
+            </p>
+
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.8 Implementation Roadmap</h4>
+            <p className="text-gray-300 leading-8 mb-6">
+              The protocol's roadmap includes incremental support for increasingly complex AI models, recursive proofs for multi-agent execution, and integration with hardware-based trusted execution environments. Initial deployment focuses on basic ML models, followed by neural network support, advanced constraint enforcement, multi-agent composition, and eventually TEE integration for enhanced security and efficiency.
             </p>
 
             <h3 className="text-2xl font-semibold text-white mb-6">2.4 Zero-Knowledge Proof System</h3>
