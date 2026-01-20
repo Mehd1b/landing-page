@@ -11,6 +11,8 @@ interface RoadmapItem {
   y: number;
   category: 'zkvm' | 'agents' | 'marketplace' | 'ecosystem' | 'defi';
   details?: string[];
+  success_criteria?: string[];
+  non_goals?: string[];
 }
 
 interface Connection {
@@ -26,8 +28,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'RISC Zero execution sandbox with deterministic constraints and proof pipeline',
     status: 'in-progress',
     quarter: 'Q1 2026',
-    x: 200,
-    y: 300,
+    x: 240,
+    y: 320,
     category: 'zkvm',
     details: [
       'RISC Zero zkVM implementation',
@@ -42,8 +44,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Canonical agent interface with input/output formats and execution semantics',
     status: 'upcoming',
     quarter: 'Q1 2026',
-    x: 380,
-    y: 260,
+    x: 440,
+    y: 320,
     category: 'agents',
     details: [
       'Agent trait: init(), execute(), constraints()',
@@ -58,8 +60,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Input commitment design, journal canonicalization, and replay protection',
     status: 'upcoming',
     quarter: 'Q1 2026',
-    x: 550,
-    y: 300,
+    x: 640,
+    y: 320,
     category: 'zkvm',
     details: [
       'Input commitment design',
@@ -74,8 +76,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Complete SDK with guest generation CLI and example agents',
     status: 'upcoming',
     quarter: 'Q1 2026',
-    x: 720,
-    y: 260,
+    x: 840,
+    y: 320,
     category: 'ecosystem',
     details: [
       'Kernel SDK for agent development',
@@ -90,8 +92,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Vault, proof submission, and registry interfaces with multionce scheme',
     status: 'upcoming',
     quarter: 'Q2 2026',
-    x: 150,
-    y: 450,
+    x: 240,
+    y: 480,
     category: 'ecosystem',
     details: [
       'Vault interface standard',
@@ -106,8 +108,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Complete user-to-settlement flow with first agent deployment',
     status: 'upcoming',
     quarter: 'Q2 2026',
-    x: 350,
-    y: 420,
+    x: 440,
+    y: 480,
     category: 'agents',
     details: [
       'End-to-end execution pipeline',
@@ -122,8 +124,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Vaults, registry, and verifier contracts with basic DeFi interactions',
     status: 'upcoming',
     quarter: 'Q2 2026',
-    x: 550,
-    y: 450,
+    x: 640,
+    y: 480,
     category: 'defi',
     details: [
       'User vault contracts',
@@ -138,8 +140,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Receipt structure, journal formats, and verification specifications',
     status: 'upcoming',
     quarter: 'Q2 2026',
-    x: 750,
-    y: 420,
+    x: 840,
+    y: 480,
     category: 'zkvm',
     details: [
       'Receipt structure specification',
@@ -156,8 +158,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Listing/registry UI with agent discovery and versioning',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 200,
-    y: 600,
+    x: 240,
+    y: 640,
     category: 'marketplace',
     details: [
       'Agent listing and discovery UI',
@@ -172,8 +174,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'MVP allocation, fee routing, and basic subscription models',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 400,
-    y: 570,
+    x: 440,
+    y: 640,
     category: 'ecosystem',
     details: [
       'Allocation + fee routing',
@@ -188,8 +190,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Better UX for allocators with portfolio management and analytics',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 600,
-    y: 600,
+    x: 640,
+    y: 640,
     category: 'marketplace',
     details: [
       'Portfolio management interface',
@@ -204,8 +206,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Proof latency, execution cost, and uptime dashboards for allocators',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 800,
-    y: 570,
+    x: 840,
+    y: 640,
     category: 'ecosystem',
     details: [
       'Proof latency monitoring',
@@ -222,8 +224,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Proof size reduction, batch verification, and cost optimizations',
     status: 'upcoming',
     quarter: 'Q4 2026',
-    x: 250,
-    y: 750,
+    x: 240,
+    y: 800,
     category: 'zkvm',
     details: [
       'Proof size reduction',
@@ -238,8 +240,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'External audits, formal specification, and security benchmarks',
     status: 'upcoming',
     quarter: 'Q4 2026',
-    x: 450,
-    y: 720,
+    x: 440,
+    y: 800,
     category: 'ecosystem',
     details: [
       'External security audits',
@@ -254,8 +256,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Advanced constraint engine with formal verification and composability',
     status: 'upcoming',
     quarter: 'Q4 2026',
-    x: 650,
-    y: 750,
+    x: 640,
+    y: 800,
     category: 'zkvm',
     details: [
       'Formal constraint specification',
@@ -270,8 +272,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Agent-to-agent calls with proof aggregation and composable patterns',
     status: 'upcoming',
     quarter: 'Q4 2026',
-    x: 850,
-    y: 720,
+    x: 840,
+    y: 800,
     category: 'agents',
     details: [
       'Agent → Agent communication',
@@ -288,8 +290,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Long-lived stateful agents with persistent state (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 300,
-    y: 900,
+    x: 320,
+    y: 960,
     category: 'agents',
     details: [
       'Persistent agent state',
@@ -304,8 +306,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Multiple executors with proof races and decentralized infrastructure (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 550,
-    y: 880,
+    x: 540,
+    y: 960,
     category: 'ecosystem',
     details: [
       'Multiple executor network',
@@ -320,8 +322,8 @@ const roadmapData: RoadmapItem[] = [
     description: 'Protocol governance and community management (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 800,
-    y: 900,
+    x: 760,
+    y: 960,
     category: 'ecosystem',
     details: [
       'Protocol governance',
@@ -333,31 +335,35 @@ const roadmapData: RoadmapItem[] = [
 ];
 
 const connections: Connection[] = [
-  // Phase 1 internal connections
-  { from: 'canonical-zkvm-guest', to: 'agent-trait-interface' },
-  { from: 'agent-trait-interface', to: 'transcript-determinism' },
-  { from: 'transcript-determinism', to: 'developer-sdk' },
-  { from: 'canonical-zkvm-guest', to: 'on-chain-interfaces' },
-  { from: 'agent-trait-interface', to: 'execution-flow-mvp' },
-  { from: 'transcript-determinism', to: 'defi-integration-mvp' },
-  { from: 'developer-sdk', to: 'proof-format-standard' },
+  // Phase 1: Horizontal flow within phase
+  { from: 'zkvm-guest-kernel', to: 'constraint-enforcement' },
+  { from: 'constraint-enforcement', to: 'deterministic-framework' },
+  { from: 'proof-pipeline', to: 'agent-registry' },
+  { from: 'agent-registry', to: 'vault-infrastructure' },
+  { from: 'vault-infrastructure', to: 'developer-sdk' },
   
-  // Phase 1 to Phase 2 connections
-  { from: 'on-chain-interfaces', to: 'agent-marketplace-v1' },
-  { from: 'execution-flow-mvp', to: 'economic-layer-mvp' },
-  { from: 'defi-integration-mvp', to: 'allocator-dashboard' },
-  { from: 'proof-format-standard', to: 'monitoring-observability' },
+  // Phase 1 to Phase 2: Only key foundational connections
+  { from: 'developer-sdk', to: 'execution-orchestration' },
+  { from: 'vault-infrastructure', to: 'financial-agents' },
+  { from: 'agent-registry', to: 'mvp-deployment' },
   
-  // Phase 2 to Phase 3 connections
-  { from: 'agent-marketplace-v1', to: 'performance-optimizations' },
-  { from: 'economic-layer-mvp', to: 'security-audit' },
-  { from: 'allocator-dashboard', to: 'constraint-system-spec' },
-  { from: 'monitoring-observability', to: 'multi-agent-composition' },
+  // Phase 2: Horizontal flow within phase
+  { from: 'execution-orchestration', to: 'financial-agents' },
+  { from: 'financial-agents', to: 'mvp-deployment' },
   
-  // Phase 3 to Future connections
-  { from: 'performance-optimizations', to: 'stateful-agents-future' },
-  { from: 'security-audit', to: 'decentralized-execution-future' },
-  { from: 'constraint-system-spec', to: 'governance-future' }
+  // Phase 2 to Phase 3: Production readiness flow
+  { from: 'mvp-deployment', to: 'security-audit' },
+  { from: 'execution-orchestration', to: 'performance-optimization' },
+  { from: 'financial-agents', to: 'monitoring-observability' },
+  
+  // Phase 3: Horizontal flow within phase
+  { from: 'security-audit', to: 'performance-optimization' },
+  { from: 'performance-optimization', to: 'monitoring-observability' },
+  
+  // Phase 3 to Future: Advanced capabilities
+  { from: 'monitoring-observability', to: 'advanced-execution' },
+  { from: 'security-audit', to: 'network-decentralization' },
+  { from: 'performance-optimization', to: 'ecosystem-expansion' }
 ];
 
 export default function InteractiveRoadmap() {
@@ -366,22 +372,23 @@ export default function InteractiveRoadmap() {
   const [position, setPosition] = useState({ x: 0, y: -100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [dragMoved, setDragMoved] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  const categoryColors = {
-    zkvm: '#00D4FF', // Electric Blue
-    agents: '#00FF88', // Neon Green
-    marketplace: '#FF00FF', // Magenta
-    ecosystem: '#FFD700', // Gold
-    defi: '#FF4081' // Pink
+  const phaseColors = {
+    'Q1 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
+    'Q2 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
+    'Q3 2026': '#FF00FF', // Phase 2 - MVP - Magenta
+    'Q4 2026': '#00FF88', // Phase 3 - Production - Green
+    '2027+': '#FFD700'     // Future - Gold
   };
 
   const statusColors = {
     completed: '#00FF88',
     'in-progress': '#FFD700',
-    upcoming: '#8B5CF6'
+    upcoming: '#6B7280'
   };
 
 
@@ -393,23 +400,35 @@ export default function InteractiveRoadmap() {
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.target === svgRef.current) {
+    const target = e.target as Element;
+    // Only start dragging on background elements, not on interactive elements
+    if (target.tagName === 'svg' || target.tagName === 'rect' || 
+        (target.closest('svg') === svgRef.current && !target.closest('.milestone-node'))) {
       setIsDragging(true);
+      setDragMoved(false);
       setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+      e.preventDefault();
     }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
-      setPosition({
-        x: e.clientX - dragStart.x,
-        y: e.clientY - dragStart.y
-      });
+      const newX = e.clientX - dragStart.x;
+      const newY = e.clientY - dragStart.y;
+      
+      // Track if mouse has moved significantly
+      if (Math.abs(newX - position.x) > 5 || Math.abs(newY - position.y) > 5) {
+        setDragMoved(true);
+      }
+      
+      setPosition({ x: newX, y: newY });
     }
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    // Reset drag moved state after a short delay
+    setTimeout(() => setDragMoved(false), 100);
   };
 
   const resetView = () => {
@@ -474,31 +493,26 @@ export default function InteractiveRoadmap() {
         </button>
       </div>
 
-      {/* Enhanced Legend */}
+      {/* Phase Color Legend */}
       <div className="absolute bottom-4 left-4 z-20 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm">
-        <h3 className="text-sm font-bold mb-3 text-cyan-300">Categories</h3>
+        <h3 className="text-sm font-bold mb-3 text-cyan-300">Development Phases</h3>
         <div className="space-y-2">
-          {Object.entries(categoryColors).map(([category, color]) => (
-            <div key={category} className="flex items-center gap-3 text-xs">
-              <div 
-                className="w-4 h-4 rounded-full border-2 border-white/20"
-                style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}40` }}
-              />
-              <span className="text-gray-300 font-medium capitalize">{category === 'zkvm' ? 'zkVM' : category === 'defi' ? 'DeFi' : category}</span>
-            </div>
-          ))}
-        </div>
-        <h3 className="text-sm font-bold mt-4 mb-3 text-purple-300">Status</h3>
-        <div className="space-y-2">
-          {Object.entries(statusColors).map(([status, color]) => (
-            <div key={status} className="flex items-center gap-3 text-xs">
-              <div 
-                className="w-4 h-4 rounded-full border-2 border-white/20"
-                style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}40` }}
-              />
-              <span className="text-gray-300 font-medium capitalize">{status.replace('-', ' ')}</span>
-            </div>
-          ))}
+          <div className="flex items-center gap-3 text-xs">
+            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#00D4FF', boxShadow: '0 0 8px #00D4FF40' }} />
+            <span className="text-gray-300 font-medium">Phase 1: Core Protocol (Q1-Q2 2026)</span>
+          </div>
+          <div className="flex items-center gap-3 text-xs">
+            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FF00FF', boxShadow: '0 0 8px #FF00FF40' }} />
+            <span className="text-gray-300 font-medium">Phase 2: MVP Execution (Q3 2026)</span>
+          </div>
+          <div className="flex items-center gap-3 text-xs">
+            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#00FF88', boxShadow: '0 0 8px #00FF8840' }} />
+            <span className="text-gray-300 font-medium">Phase 3: Production (Q4 2026)</span>
+          </div>
+          <div className="flex items-center gap-3 text-xs">
+            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FFD700', boxShadow: '0 0 8px #FFD70040' }} />
+            <span className="text-gray-300 font-medium">Future: Advanced (2027+)</span>
+          </div>
         </div>
       </div>
 
@@ -570,24 +584,34 @@ export default function InteractiveRoadmap() {
           <rect width="100%" height="100%" fill="#0A0A0A"/>
           <rect width="100%" height="100%" fill="url(#futuristicGrid)" opacity="0.6"/>
 
-          {/* Header Section - Inside SVG */}
-          <foreignObject x="150" y="20" width="600" height="120">
-            <div className="bg-gray-900/95 rounded-lg p-4 border border-gray-700">
-              <div className="text-center mb-3">
-                <h1 className="text-2xl font-light mb-1 text-white">
-                  DeFiesta Roadmap
+          {/* Technical Header Section */}
+          <foreignObject x="200" y="25" width="600" height="200">
+            <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-sm">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10 animate-pulse"></div>
+              <div className="relative z-10 text-center">
+                <h1 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400">
+                  Protocol Development Roadmap
                 </h1>
-                <div className="text-xs text-gray-400 mb-3">
-                  Our journey to verifiable on-chain AI agents
+                <div className="text-sm text-cyan-300 mb-4 font-medium">
+                  Verifiable Execution Kernel for Bounded Financial Agents
                 </div>
-              </div>
-              <div className="border-t border-gray-600 pt-3">
-                <h2 className="text-sm font-semibold mb-2 text-center bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
-                  Vision 2026: Three-Phase Protocol Rollout
-                </h2>
-                <p className="text-xs text-gray-300 text-center leading-relaxed">
-                  Phase 1: Core execution sandbox + constraints • Phase 2: Marketplace + economics • Phase 3: Performance + security hardening
-                </p>
+                <div className="grid grid-cols-3 gap-4 text-xs">
+                  <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg p-2 border border-cyan-500/40">
+                    <div className="font-semibold text-cyan-300">Phase 1</div>
+                    <div className="text-gray-300">Core Protocol Infrastructure</div>
+                    <div className="text-gray-400 text-xs mt-1">Q1-Q2 2026</div>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-500/40">
+                    <div className="font-semibold text-purple-300">Phase 2</div>
+                    <div className="text-gray-300">MVP Execution Protocol</div>
+                    <div className="text-gray-400 text-xs mt-1">Q3 2026</div>
+                  </div>
+                  <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-500/40">
+                    <div className="font-semibold text-green-300">Phase 3</div>
+                    <div className="text-gray-300">Production Hardening</div>
+                    <div className="text-gray-400 text-xs mt-1">Q4 2026</div>
+                  </div>
+                </div>
               </div>
             </div>
           </foreignObject>
@@ -614,68 +638,207 @@ export default function InteractiveRoadmap() {
             );
           })}
 
-          {/* Phase Labels */}
+          {/* Technical Phase Indicators */}
           {[
-            { label: 'Phase 1\nCore Protocol\n(Q1-Q2 2026)', y: 180 },
-            { label: 'Phase 2\nMarketplace\n(Q3 2026)', y: 500 },
-            { label: 'Phase 3\nScale & Security\n(Q4 2026)', y: 660 },
-            { label: 'Future\n(2027+)', y: 820 }
+            { 
+              label: 'Phase 1', 
+              subtitle: 'Core Protocol Infrastructure', 
+              period: 'Q1-Q2 2026', 
+              y: 280, 
+              gradient: 'from-cyan-500 to-blue-600', 
+              glow: '#00D4FF', 
+              objective: 'Establish foundational execution primitives',
+              success: '<10ms latency overhead, 300k gas verification'
+            },
+            { 
+              label: 'Phase 2', 
+              subtitle: 'MVP Execution Protocol', 
+              period: 'Q3 2026', 
+              y: 600, 
+              gradient: 'from-purple-500 to-pink-600', 
+              glow: '#FF00FF', 
+              objective: 'Deploy end-to-end execution flow',
+              success: '10+ production agents, <5min settlement'
+            },
+            { 
+              label: 'Phase 3', 
+              subtitle: 'Production Hardening', 
+              period: 'Q4 2026', 
+              y: 760, 
+              gradient: 'from-green-500 to-emerald-600', 
+              glow: '#00FF88', 
+              objective: 'Secure and optimize for production',
+              success: '$10M+ assets, 99.9% execution success'
+            },
+            { 
+              label: 'Future', 
+              subtitle: 'Advanced Patterns', 
+              period: '2027+', 
+              y: 920, 
+              gradient: 'from-orange-500 to-red-600', 
+              glow: '#FFD700', 
+              objective: 'Network decentralization and ecosystem expansion',
+              success: 'Multi-executor networks, governance'
+            }
           ].map((phase, index) => (
             <g key={index}>
+              {/* Glowing background */}
               <rect
                 x="20"
-                y={phase.y}
-                width="90"
-                height="60"
-                fill="#1F2937"
-                stroke="#374151"
-                rx="6"
+                y={phase.y - 10}
+                width="140"
+                height="90"
+                fill={phase.glow}
+                opacity="0.1"
+                rx="12"
+                filter="url(#glow)"
               />
-              {phase.label.split('\n').map((line, lineIndex) => (
-                <text
-                  key={lineIndex}
-                  x="65"
-                  y={phase.y + 18 + lineIndex * 12}
-                  className={lineIndex === 0 ? "text-sm font-semibold" : "text-xs"}
-                  fill="#9CA3AF"
-                  textAnchor="middle"
-                >
-                  {line}
-                </text>
-              ))}
+              
+              {/* Main phase container */}
+              <foreignObject x="25" y={phase.y - 5} width="130" height="80">
+                <div className={`h-full bg-gradient-to-br ${phase.gradient} p-2 rounded-xl border border-white/20 backdrop-blur-sm`}>
+                  <div className="text-xs font-bold text-white">{phase.label}</div>
+                  <div className="text-xs text-white/90 font-medium mt-1 leading-tight">{phase.subtitle}</div>
+                  <div className="text-xs text-white/70 mt-1">{phase.period}</div>
+                  <div className="text-xs text-white/60 mt-1 leading-tight">{phase.success}</div>
+                </div>
+              </foreignObject>
+              
+              {/* Animated side indicator */}
+              <rect
+                x="15"
+                y={phase.y + 20}
+                width="4"
+                height="30"
+                fill={phase.glow}
+                rx="2"
+                opacity="0.8"
+              >
+                <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin={`${index * 0.5}s`}/>
+              </rect>
             </g>
           ))}
 
-          {/* Roadmap Items */}
-          {roadmapData.map((item) => (
-            <g key={item.id}>
-              {/* Item Circle */}
-              <circle
-                cx={item.x}
-                cy={item.y}
-                r={selectedItem === item.id ? "28" : "22"}
-                fill={statusColors[item.status]}
-                stroke={categoryColors[item.category]}
-                strokeWidth="4"
-                className="cursor-pointer transition-all duration-200 hover:opacity-80"
-                onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
-              />
-              
-              {/* Item Label */}
-              <text
-                x={item.x}
-                y={item.y - 38}
-                textAnchor="middle"
-                className="text-xs font-medium pointer-events-none max-w-30"
-                fill="white"
-              >
-                <tspan x={item.x} dy="0">{item.title.split(' ').slice(0, 2).join(' ')}</tspan>
-                {item.title.split(' ').length > 2 && (
-                  <tspan x={item.x} dy="12">{item.title.split(' ').slice(2).join(' ')}</tspan>
+          {/* Enhanced Roadmap Items */}
+          {roadmapData.map((item) => {
+            const isSelected = selectedItem === item.id;
+            const nodeSize = isSelected ? 35 : 28;
+            const phaseColor = phaseColors[item.quarter];
+            const statusColor = statusColors[item.status];
+            
+            return (
+              <g key={item.id}>
+                {/* Outer glow ring */}
+                <circle
+                  cx={item.x}
+                  cy={item.y}
+                  r={nodeSize + 8}
+                  fill={phaseColor}
+                  opacity="0.2"
+                  filter="url(#nodeGlow)"
+                  className={`transition-all duration-300 ${isSelected ? 'opacity-40' : 'opacity-20'}`}
+                >
+                  <animate attributeName="r" values={`${nodeSize + 6};${nodeSize + 12};${nodeSize + 6}`} dur="3s" repeatCount="indefinite"/>
+                </circle>
+                
+                {/* Status ring */}
+                <circle
+                  cx={item.x}
+                  cy={item.y}
+                  r={nodeSize + 3}
+                  fill="none"
+                  stroke={statusColor}
+                  strokeWidth="2"
+                  opacity="0.8"
+                  className="transition-all duration-300"
+                />
+                
+                {/* Main node */}
+                <circle
+                  cx={item.x}
+                  cy={item.y}
+                  r={nodeSize}
+                  fill={phaseColor}
+                  stroke={phaseColor}
+                  strokeWidth="3"
+                  className="milestone-node cursor-pointer transition-all duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!dragMoved) {
+                      setSelectedItem(selectedItem === item.id ? null : item.id);
+                    }
+                  }}
+                  filter="url(#nodeGlow)"
+                  opacity="0.9"
+                />
+                
+                {/* Inner icon/indicator */}
+                <circle
+                  cx={item.x}
+                  cy={item.y}
+                  r={nodeSize - 12}
+                  fill={item.status === 'in-progress' ? statusColor : 'rgba(255,255,255,0.9)'}
+                  opacity={item.status === 'in-progress' ? '0.9' : '0.7'}
+                  className="milestone-node cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!dragMoved) {
+                      setSelectedItem(selectedItem === item.id ? null : item.id);
+                    }
+                  }}
+                >
+                  {item.status === 'in-progress' && (
+                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                  )}
+                </circle>
+                
+                {/* Enhanced Label */}
+                <foreignObject 
+                  x={item.x - 60} 
+                  y={item.y - 70} 
+                  width="120" 
+                  height="35"
+                  className="pointer-events-none"
+                >
+                  <div className="text-center">
+                    <div className="text-xs font-bold text-white drop-shadow-lg leading-tight">
+                      {item.title.length > 30 ? 
+                        item.title.substring(0, 30) + '...' : 
+                        item.title
+                      }
+                    </div>
+                    <div className="text-xs text-gray-300 mt-1 opacity-80">
+                      {item.quarter}
+                    </div>
+                  </div>
+                </foreignObject>
+                
+                {/* Progress indicator for in-progress items */}
+                {item.status === 'in-progress' && (
+                  <circle
+                    cx={item.x}
+                    cy={item.y}
+                    r={nodeSize + 5}
+                    fill="none"
+                    stroke={statusColor}
+                    strokeWidth="2"
+                    strokeDasharray={`${2 * Math.PI * (nodeSize + 5) * 0.75} ${2 * Math.PI * (nodeSize + 5) * 0.25}`}
+                    opacity="0.9"
+                    transform={`rotate(-90 ${item.x} ${item.y})`}
+                  >
+                    <animateTransform 
+                      attributeName="transform" 
+                      type="rotate" 
+                      from={`-90 ${item.x} ${item.y}`}
+                      to={`270 ${item.x} ${item.y}`}
+                      dur="2s" 
+                      repeatCount="indefinite"
+                    />
+                  </circle>
                 )}
-              </text>
-            </g>
-          ))}
+              </g>
+            );
+          })}
         </svg>
       </div>
 
@@ -686,7 +849,7 @@ export default function InteractiveRoadmap() {
             const item = roadmapData.find(i => i.id === selectedItem);
             if (!item) return null;
             
-            const categoryColor = categoryColors[item.category];
+            const phaseColor = phaseColors[item.quarter];
             const statusColor = statusColors[item.status];
             
             return (
@@ -719,12 +882,14 @@ export default function InteractiveRoadmap() {
                     <span 
                       className="px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
                       style={{ 
-                        backgroundColor: categoryColor + '20',
-                        color: categoryColor,
-                        borderColor: categoryColor + '40'
+                        backgroundColor: phaseColor + '20',
+                        color: phaseColor,
+                        borderColor: phaseColor + '40'
                       }}
                     >
-                      {item.category === 'zkvm' ? 'zkVM' : item.category === 'defi' ? 'DeFi' : item.category.toUpperCase()}
+                      {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? 'PHASE 1' :
+                       item.quarter.includes('Q3') ? 'PHASE 2' :
+                       item.quarter.includes('Q4') ? 'PHASE 3' : 'FUTURE'}
                     </span>
                     <span className="text-xs text-cyan-300 font-medium bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/30">
                       {item.quarter}
@@ -736,8 +901,8 @@ export default function InteractiveRoadmap() {
                   </p>
                   
                   {item.details && (
-                    <div>
-                      <h4 className="text-sm font-bold mb-3 text-cyan-300">Key Deliverables:</h4>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-bold mb-3 text-cyan-300">Technical Deliverables:</h4>
                       <ul className="text-xs text-gray-300 space-y-2">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3 bg-gray-800/30 p-2 rounded border border-gray-700/30">
@@ -748,6 +913,86 @@ export default function InteractiveRoadmap() {
                       </ul>
                     </div>
                   )}
+                  
+                  {/* Success Criteria based on phase */}
+                  {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? (
+                    <div className="mb-4">
+                      <h4 className="text-sm font-bold mb-3 text-emerald-300">Phase 1 Success Criteria:</h4>
+                      <ul className="text-xs text-gray-300 space-y-1">
+                        <li className="flex items-start gap-2">
+                          <span className="text-emerald-400 mt-1">✓</span>
+                          <span>Agent programs execute deterministically with &lt;10ms latency overhead</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-emerald-400 mt-1">✓</span>
+                          <span>All constraint violations result in proof generation failure</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-emerald-400 mt-1">✓</span>
+                          <span>Execution receipts verify on-chain within 300k gas budget</span>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : item.quarter.includes('Q3') ? (
+                    <div className="mb-4">
+                      <h4 className="text-sm font-bold mb-3 text-purple-300">Phase 2 Success Criteria:</h4>
+                      <ul className="text-xs text-gray-300 space-y-1">
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400 mt-1">✓</span>
+                          <span>10+ production-ready financial agents deployed</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400 mt-1">✓</span>
+                          <span>&lt;5 minute end-to-end execution latency</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400 mt-1">✓</span>
+                          <span>Zero custody errors across 100+ execution cycles</span>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : item.quarter.includes('Q4') ? (
+                    <div className="mb-4">
+                      <h4 className="text-sm font-bold mb-3 text-green-300">Phase 3 Success Criteria:</h4>
+                      <ul className="text-xs text-gray-300 space-y-1">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400 mt-1">✓</span>
+                          <span>Protocol handles $10M+ in delegated assets securely</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400 mt-1">✓</span>
+                          <span>Average proof generation cost &lt;$0.50 per execution</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400 mt-1">✓</span>
+                          <span>99.9% execution success rate with constraint compliance</span>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : null}
+                  
+                  {/* Protocol Invariants */}
+                  <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 p-3 rounded-lg border border-orange-500/30">
+                    <h4 className="text-sm font-bold mb-2 text-orange-300">Protocol Invariants:</h4>
+                    <ul className="text-xs text-gray-300 space-y-1">
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange-400 mt-1">⚡</span>
+                        <span>Execution Determinism: Identical inputs → identical outputs</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange-400 mt-1">🔒</span>
+                        <span>Capital Safety: User funds remain in controlled vaults</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange-400 mt-1">📋</span>
+                        <span>Constraint Enforcement: All actions respect declared bounds</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-orange-400 mt-1">🔍</span>
+                        <span>Proof Completeness: Every state change is cryptographically backed</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </>
             );
