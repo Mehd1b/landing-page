@@ -13,6 +13,7 @@ interface RoadmapItem {
   details?: string[];
   success_criteria?: string[];
   non_goals?: string[];
+  link?: string;
 }
 
 interface Connection {
@@ -26,7 +27,7 @@ const roadmapData: RoadmapItem[] = [
     id: 'canonical-zkvm-guest',
     title: 'Canonical zkVM Guest + Constraint Kernel',
     description: 'RISC Zero execution sandbox with deterministic constraints and proof pipeline',
-    status: 'in-progress',
+    status: 'completed',
     quarter: 'Q1 2026',
     x: 240,
     y: 320,
@@ -36,13 +37,14 @@ const roadmapData: RoadmapItem[] = [
       'Constraint engine for agent execution',
       'Deterministic execution boundaries',
       'Proof pipeline to Ethereum'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel'
   },
   {
     id: 'agent-trait-interface',
     title: 'Agent Trait Interface',
     description: 'Canonical agent interface with input/output formats and execution semantics',
-    status: 'upcoming',
+    status: 'in-progress',
     quarter: 'Q1 2026',
     x: 440,
     y: 320,
@@ -58,7 +60,7 @@ const roadmapData: RoadmapItem[] = [
     id: 'transcript-determinism',
     title: 'Transcript & Replay Protection',
     description: 'Input commitment design, journal canonicalization, and replay protection',
-    status: 'upcoming',
+    status: 'in-progress',
     quarter: 'Q1 2026',
     x: 640,
     y: 320,
@@ -725,7 +727,9 @@ export default function InteractiveRoadmap() {
             const nodeSize = isSelected ? 35 : 28;
             const phaseColor = phaseColors[item.quarter];
             const statusColor = statusColors[item.status];
-            
+            const isCompleted = item.status === 'completed';
+            const nodeColor = isCompleted ? '#00FF88' : phaseColor;
+
             return (
               <g key={item.id}>
                 {/* Outer glow ring */}
@@ -733,14 +737,16 @@ export default function InteractiveRoadmap() {
                   cx={item.x}
                   cy={item.y}
                   r={nodeSize + 8}
-                  fill={phaseColor}
-                  opacity="0.2"
+                  fill={nodeColor}
+                  opacity={isCompleted ? "0.4" : "0.2"}
                   filter="url(#nodeGlow)"
-                  className={`transition-all duration-300 ${isSelected ? 'opacity-40' : 'opacity-20'}`}
+                  className={`transition-all duration-300 ${isSelected ? 'opacity-40' : ''}`}
                 >
-                  <animate attributeName="r" values={`${nodeSize + 6};${nodeSize + 12};${nodeSize + 6}`} dur="3s" repeatCount="indefinite"/>
+                  {!isCompleted && (
+                    <animate attributeName="r" values={`${nodeSize + 6};${nodeSize + 12};${nodeSize + 6}`} dur="3s" repeatCount="indefinite"/>
+                  )}
                 </circle>
-                
+
                 {/* Status ring */}
                 <circle
                   cx={item.x}
@@ -748,19 +754,19 @@ export default function InteractiveRoadmap() {
                   r={nodeSize + 3}
                   fill="none"
                   stroke={statusColor}
-                  strokeWidth="2"
-                  opacity="0.8"
+                  strokeWidth={isCompleted ? "3" : "2"}
+                  opacity={isCompleted ? "1" : "0.8"}
                   className="transition-all duration-300"
                 />
-                
+
                 {/* Main node */}
                 <circle
                   cx={item.x}
                   cy={item.y}
                   r={nodeSize}
-                  fill={phaseColor}
-                  stroke={phaseColor}
-                  strokeWidth="3"
+                  fill={nodeColor}
+                  stroke={isCompleted ? '#00FF88' : phaseColor}
+                  strokeWidth={isCompleted ? "4" : "3"}
                   className="milestone-node cursor-pointer transition-all duration-300"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -771,26 +777,53 @@ export default function InteractiveRoadmap() {
                   filter="url(#nodeGlow)"
                   opacity="0.9"
                 />
-                
-                {/* Inner icon/indicator */}
-                <circle
-                  cx={item.x}
-                  cy={item.y}
-                  r={nodeSize - 12}
-                  fill={item.status === 'in-progress' ? statusColor : 'rgba(255,255,255,0.9)'}
-                  opacity={item.status === 'in-progress' ? '0.9' : '0.7'}
-                  className="milestone-node cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (!dragMoved) {
-                      setSelectedItem(selectedItem === item.id ? null : item.id);
-                    }
-                  }}
-                >
-                  {item.status === 'in-progress' && (
-                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-                  )}
-                </circle>
+
+                {/* Inner icon/indicator - Checkmark for completed, circle for others */}
+                {isCompleted ? (
+                  <g
+                    className="milestone-node cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!dragMoved) {
+                        setSelectedItem(selectedItem === item.id ? null : item.id);
+                      }
+                    }}
+                  >
+                    <circle
+                      cx={item.x}
+                      cy={item.y}
+                      r={nodeSize - 10}
+                      fill="rgba(0, 255, 136, 0.3)"
+                    />
+                    <path
+                      d={`M ${item.x - 8} ${item.y} L ${item.x - 2} ${item.y + 6} L ${item.x + 10} ${item.y - 6}`}
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </g>
+                ) : (
+                  <circle
+                    cx={item.x}
+                    cy={item.y}
+                    r={nodeSize - 12}
+                    fill={item.status === 'in-progress' ? statusColor : 'rgba(255,255,255,0.9)'}
+                    opacity={item.status === 'in-progress' ? '0.9' : '0.7'}
+                    className="milestone-node cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!dragMoved) {
+                        setSelectedItem(selectedItem === item.id ? null : item.id);
+                      }
+                    }}
+                  >
+                    {item.status === 'in-progress' && (
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                    )}
+                  </circle>
+                )}
                 
                 {/* Enhanced Label */}
                 <foreignObject 
@@ -899,7 +932,21 @@ export default function InteractiveRoadmap() {
                   <p className="text-sm text-gray-300 leading-relaxed mb-4 bg-gray-800/50 p-3 rounded-lg border border-gray-700/50">
                     {item.description}
                   </p>
-                  
+
+                  {item.link && (
+                    <div className="mb-4">
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 rounded-lg border border-emerald-500/40 transition-colors text-sm font-medium"
+                      >
+                        <span>View Repository</span>
+                        <span>→</span>
+                      </a>
+                    </div>
+                  )}
+
                   {item.details && (
                     <div className="mb-4">
                       <h4 className="text-sm font-bold mb-3 text-cyan-300">Technical Deliverables:</h4>
