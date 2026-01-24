@@ -44,7 +44,7 @@ const roadmapData: RoadmapItem[] = [
     id: 'agent-trait-interface',
     title: 'Agent Trait Interface',
     description: 'Canonical agent interface with input/output formats and execution semantics',
-    status: 'in-progress',
+    status: 'completed',
     quarter: 'Q1 2026',
     x: 440,
     y: 320,
@@ -54,13 +54,14 @@ const roadmapData: RoadmapItem[] = [
       'Input format specification',
       'Output/actions format',
       'Constraint enforcement semantics'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel'
   },
   {
     id: 'transcript-determinism',
     title: 'Transcript & Replay Protection',
     description: 'Input commitment design, journal canonicalization, and replay protection',
-    status: 'in-progress',
+    status: 'completed',
     quarter: 'Q1 2026',
     x: 640,
     y: 320,
@@ -70,13 +71,14 @@ const roadmapData: RoadmapItem[] = [
       'Journal shaping & canonicalization',
       'Replay protection mechanisms',
       'Deterministic execution guarantees'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel'
   },
   {
     id: 'developer-sdk',
     title: 'Developer Tooling (SDK & CLI)',
     description: 'Complete SDK with guest generation CLI and example agents',
-    status: 'upcoming',
+    status: 'completed',
     quarter: 'Q1 2026',
     x: 840,
     y: 320,
@@ -86,13 +88,14 @@ const roadmapData: RoadmapItem[] = [
       'Guest generation CLI',
       'Example agents and templates',
       'CI/testing suite for guest + host'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel'
   },
   {
     id: 'on-chain-interfaces',
     title: 'On-Chain Interface Standards',
     description: 'Vault, proof submission, and registry interfaces with multionce scheme',
-    status: 'upcoming',
+    status: 'in-progress',
     quarter: 'Q2 2026',
     x: 240,
     y: 480,
@@ -173,7 +176,7 @@ const roadmapData: RoadmapItem[] = [
   {
     id: 'economic-layer-mvp',
     title: 'Economic Layer (Fees & Royalties)',
-    description: 'MVP allocation, fee routing, and basic subscription models',
+    description: 'MVP allocation and fee routing',
     status: 'upcoming',
     quarter: 'Q3 2026',
     x: 440,
@@ -181,7 +184,6 @@ const roadmapData: RoadmapItem[] = [
     category: 'ecosystem',
     details: [
       'Allocation + fee routing',
-      'Basic subscription models',
       'Developer royalties',
       'Transparent fee structure'
     ]
