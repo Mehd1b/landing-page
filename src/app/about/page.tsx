@@ -1,7 +1,36 @@
 'use client';
+import Image from 'next/image';
 import AnimatedBackground from '../components/AnimatedBackground';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+// Card data for the three About sections
+const ABOUT_CARDS = [
+  {
+    title: 'How We Started',
+    description: 'Defiesta began as a small research-driven initiative focused on understanding how decentralized finance systems behave under real constraints. What started as exploratory work—analyzing protocols, incentives, and on-chain mechanics—gradually evolved into a broader effort to build tools and frameworks that prioritize correctness, transparency, and long-term reliability.',
+    image: '/about/how_we_started.png',
+    alt: 'Illustration representing the founding of DeFiesta',
+    hoverBorder: 'hover:border-cyan-400/30',
+    glowColor: 'shadow-cyan-400/20',
+  },
+  {
+    title: 'Our Purpose',
+    description: 'Our purpose is to contribute to a more understandable and resilient decentralized ecosystem. We aim to reduce unnecessary complexity by focusing on clear designs, verifiable behavior, and well-defined assumptions. Rather than chasing short-term trends, we concentrate on fundamentals that help protocols and users reason more clearly about the systems they rely on.',
+    image: '/about/purpose.png',
+    alt: 'Illustration representing our mission and purpose',
+    hoverBorder: 'hover:border-purple-400/30',
+    glowColor: 'shadow-purple-400/20',
+  },
+  {
+    title: 'What We Do',
+    description: 'We design and develop infrastructure, research artifacts, and open-source components related to decentralized finance. Our work spans protocol analysis, system design, and implementation, with an emphasis on correctness, security, and composability. When possible, we share our findings and tools publicly to support broader ecosystem learning.',
+    image: '/about/what_we_do.png',
+    alt: 'Illustration representing what DeFiesta does',
+    hoverBorder: 'hover:border-emerald-400/30',
+    glowColor: 'shadow-emerald-400/20',
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -36,29 +65,29 @@ export default function AboutPage() {
 
         {/* Three Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {/* Card 1: How We Started */}
-          <div className="bg-gray-900/40 rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-400/30 transition-all duration-300">
-            <h3 className="text-2xl font-semibold text-white mb-4">How We Started</h3>
-            <p className="text-gray-400 leading-relaxed">
-              DeFiesta was started in 2025, when we built the first verifiable AI agent marketplace that combines zero-knowledge proofs with decentralized finance.
-            </p>
-          </div>
-
-          {/* Card 2: Our Purpose */}
-          <div className="bg-gray-900/40 rounded-2xl p-8 border border-gray-700/50 hover:border-purple-400/30 transition-all duration-300">
-            <h3 className="text-2xl font-semibold text-white mb-4">Our Purpose</h3>
-            <p className="text-gray-400 leading-relaxed">
-              We're building high-assurance systems for high-security applications, enabling trustless AI execution across finance and technology.
-            </p>
-          </div>
-
-          {/* Card 3: What We Do */}
-          <div className="bg-gray-900/40 rounded-2xl p-8 border border-gray-700/50 hover:border-emerald-400/30 transition-all duration-300">
-            <h3 className="text-2xl font-semibold text-white mb-4">What We Do</h3>
-            <p className="text-gray-400 leading-relaxed">
-              We push the envelope in order to make it easier-than-ever to harness verifiable AI computation in your decentralized tech stack.
-            </p>
-          </div>
+          {ABOUT_CARDS.map((card) => (
+            <div
+              key={card.title}
+              className={`bg-gray-900/40 rounded-2xl p-8 border border-gray-700/50 ${card.hoverBorder} transition-all duration-300`}
+            >
+              {/* Image container with glow effect */}
+              <div className="flex justify-center mb-6">
+                <div className={`relative w-32 h-32 md:w-44 md:h-44 rounded-xl overflow-hidden shadow-lg ${card.glowColor}`}>
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    fill
+                    className="object-contain p-2"
+                    sizes="(max-width: 768px) 128px, 176px"
+                  />
+                </div>
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-4 text-center">{card.title}</h3>
+              <p className="text-gray-400 leading-relaxed text-center">
+                {card.description}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Join Us CTA */}
